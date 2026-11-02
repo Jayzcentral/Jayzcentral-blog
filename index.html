@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RetroMag Vault - Windows 98 Edition</title>
+    <title>JAŸ-Z Central</title>
     <!-- Tailwind CSS for rapid structural utility -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome for classic pixel-style fallback icons -->
@@ -164,6 +164,54 @@
             border-bottom: 2px solid var(--win-gray-darkest);
         }
     </style>
+
+ <style>
+  .retro-status-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    background-color: #c0c0c0; /* Classic Windows gray */
+    border-top: 2px solid #ffffff;
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+    box-sizing: border-box;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    font-size: 12px;
+    z-index: 99999; /* Keeps it on top of everything */
+  }
+
+  .start-btn {
+    background-color: #c0c0c0;
+    border-top: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+    border-right: 2px solid #404040;
+    border-bottom: 2px solid #404040;
+    padding: 2px 8px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+
+  .status-text {
+    background-color: #ffffff;
+    border-top: 2px solid #404040;
+    border-left: 2px solid #404040;
+    border-right: 2px solid #ffffff;
+    border-bottom: 2px solid #ffffff;
+    padding: 2px 8px;
+    flex-grow: 1;
+    color: #000000;
+  }
+</style>
+<!-- added code by roc.ette -->
+
+    
 </head>
 <body class="theme-classic">
 
@@ -409,7 +457,7 @@
             <div class="h-6 w-0.5 border-l border-gray-400 border-r border-white mx-1"></div>
             <div class="btn-98 text-xs h-7 px-2 flex items-center gap-1 pressed">
                 <i class="fa-solid fa-newspaper text-yellow-600"></i>
-                <span>Roc-Ette Stream</span>
+                <span></span>
             </div>
         </div>
 
@@ -506,5 +554,16 @@
             setInterval(updateClock, 1000);
         };
     </script>
+    
+<div class="retro-status-bar">
+  <div class="start-btn">
+    <span style="color: #000080;">❖</span> Start
+  </div>
+  <div class="status-text">
+    System Status: JAŸ-Z Archive Online | 1996 - Present
+  </div>
+</div>
+
+    
 </body>
 </html>
