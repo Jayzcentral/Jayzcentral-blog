@@ -199,8 +199,63 @@
     flex-grow: 1;
     color: #000000;
 }
-         
-        </style>
+/* Side Desktop Icons / Folders */
+.icons {
+    margin: 20px 0 0 20px;
+    list-style-type: none;
+    padding: 0;
+    width: 90px;
+    position: fixed;
+    left: 10px;
+    top: 10px;
+    z-index: 10;
+}
+
+.icons a {
+    color: #ffffff;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 11px;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px #000000;
+}
+
+.icons a:hover .icon_label {
+    text-decoration: underline;
+    background-color: #000080;
+}
+
+/* Win98 Folder & Computer Sprite Icons */
+.my_computer, .folder, .recycle_bin {
+    background-image: url('https://static.tumblr.com/fpdiq1j/O6Um4f3al/master_sprite.png');
+    margin: 0 auto 4px auto;
+}
+
+.my_computer {
+    height: 32px;
+    width: 32px;
+    background-position: -616px -157px;
+}
+
+.folder {
+    height: 27px;
+    width: 32px;
+    background-position: -616px -283px;
+}
+
+.recycle_bin {
+    height: 32px;
+    width: 30px;
+    background-position: -616px -251px;
+}
+
+/* Offset the main post feed so it doesn't overlap the left icons */
+#desktop {
+    margin-left: 140px !important;
+}               
+      </style>
   
     </head>
 
@@ -299,6 +354,25 @@
     <div class="status-text" id="statusTime">
         System Status: Archive Online | 1996 - Present
     </div>
-</div>        
+</div>  
+        
+<!-- Side Desktop Folders -->
+<div class="icons">
+    <a href="#" onclick="alert('Jayzcentral folder opened!'); return false;">
+        <div class="my_computer"></div>
+        <div class="icon_label">Jayzcentral</div>
+    </a>
+
+    <a href="#" onclick="alert('Archive folder opened!'); return false;">
+        <div class="recycle_bin"></div>
+        <div class="icon_label">Archive</div>
+    </a>
+
+    <a href="#" onclick="alert('Timeline folder opened!'); return false;">
+        <div class="folder"></div>
+        <div class="icon_label">Timeline</div>
+    </a>
+</div>
+        
     </body>
 </html>
