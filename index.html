@@ -155,7 +155,53 @@
                 flex-grow: 1;
                 color: #000000;
             }
+
+/* Custom Win98 Start Bar & Status Bar */
+.retro-status-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    background-color: #c0c0c0; /* Classic Windows gray */
+    border-top: 2px solid #ffffff;
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+    box-sizing: border-box;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    font-size: 12px;
+    z-index: 99999; /* Keeps it on top of everything */
+}
+
+.start-btn {
+    background-color: #c0c0c0;
+    border-top: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+    border-right: 2px solid #404040;
+    border-bottom: 2px solid #404040;
+    padding: 2px 8px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.status-text {
+    background-color: #ffffff;
+    border-top: 2px solid #404040;
+    border-left: 2px solid #404040;
+    border-right: 2px solid #ffffff;
+    border-bottom: 2px solid #ffffff;
+    padding: 2px 8px;
+    flex-grow: 1;
+    color: #000000;
+}
+         
         </style>
+  
     </head>
 
     <body>
@@ -244,5 +290,15 @@
             setInterval(updateClock, 1000);
             updateClock();
         </script>
+
+<!-- Custom Windows 98 Footer Taskbar -->
+<div class="retro-status-bar">
+    <div class="start-btn">
+        <span style="color: #000080;">❖</span> Start
+    </div>
+    <div class="status-text" id="statusTime">
+        System Status: Archive Online | 1996 - Present
+    </div>
+</div>        
     </body>
 </html>
