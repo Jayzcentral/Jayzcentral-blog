@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RetroMag Vault - Windows 98 Edition</title>
+    <!-- Tailwind CSS for rapid structural utility -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for classic pixel-style fallback icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ==========================================================================
+           WINDOWS 98 CUSTOM CSS STYLES & BEVEL SYSTEMS
+           ========================================================================== */
+        @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+        :root {
+            --win-bg: #008080; /* Classic Teal */
+            --win-gray: #c0c0c0;
+            --win-gray-light: #ffffff;
+            --win-gray-dark: #808080;
+            --win-gray-darkest: #000000;
+            --win-blue-start: #000080;
+            --win-blue-end: #1084d0;
+            --win-text: #000000;
+            --font-sys: 'MS Sans Serif', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Color Theme Variations */
+        body.theme-silver {
+            --win-bg: #4a5a6a;
+            --win-gray: #d4d4d4;
+            --win-blue-start: #4a5a6a;
+            --win-blue-end: #8a9aaa;
+        }
+
+        body.theme-highcontrast {
+            --win-bg: #000000;
+            --win-gray: #000000;
+            --win-gray-light: #ffffff;
+            --win-gray-dark: #808080;
+            --win-gray-darkest: #ffffff;
+            --win-blue-start: #000080;
+            --win-blue-end: #000080;
+            --win-text: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            user-select: none;
+            font-family: var(--font-sys);
+        }
+
+        body {
+            background-color: var(--win-bg);
+            color: var(--win-text);
+            overflow-x: hidden;
+            overflow-y: auto;
+            min-height: 100vh;
+            width: 100vw;
+            margin: 0;
+            padding: 0;
+            padding-bottom: 48px; /* space for taskbar */
+            font-size: 12px;
+        }
+
+        /* Classic Win98 3D Bevel Borders */
+        .outset-border {
+            border-top: 2px solid var(--win-gray-light);
+            border-left: 2px solid var(--win-gray-light);
+            border-right: 2px solid var(--win-gray-darkest);
+            border-bottom: 2px solid var(--win-gray-darkest);
+            box-shadow: inset 1px 1px 0px var(--win-gray), inset -1px -1px 0px var(--win-gray-dark);
+        }
+
+        .inset-border {
+            border-top: 2px solid var(--win-gray-dark);
+            border-left: 2px solid var(--win-gray-dark);
+            border-right: 2px solid var(--win-gray-light);
+            border-bottom: 2px solid var(--win-gray-light);
+            box-shadow: inset 1px 1px 0px var(--win-gray-darkest), inset -1px -1px 0px var(--win-gray);
+        }
+
+        .btn-98 {
+            background-color: var(--win-gray);
+            color: var(--win-text);
+            border-top: 2px solid var(--win-gray-light);
+            border-left: 2px solid var(--win-gray-light);
+            border-right: 2px solid var(--win-gray-darkest);
+            border-bottom: 2px solid var(--win-gray-darkest);
+            box-shadow: inset 1px 1px 0px var(--win-gray), inset -1px -1px 0px var(--win-gray-dark);
+            padding: 2px 6px;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            cursor: pointer;
+            text-decoration: none !important;
+        }
+
+        .btn-98:active, .btn-98.pressed {
+            border-top: 2px solid var(--win-gray-darkest);
+            border-left: 2px solid var(--win-gray-darkest);
+            border-right: 2px solid var(--win-gray-light);
+            border-bottom: 2px solid var(--win-gray-light);
+            box-shadow: inset 1px 1px 0px var(--win-gray-dark), inset -1px -1px 0px var(--win-gray);
+            padding: 3px 5px 1px 7px;
+        }
+
+        /* Window Styling */
+        .win98-window {
+            background-color: var(--win-gray);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .win98-titlebar {
+            background: linear-gradient(90deg, var(--win-blue-start), var(--win-blue-end));
+            color: white;
+            padding: 3px 4px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        .tag-badge {
+            background: #e0e0e0;
+            border: 1px solid #808080;
+            padding: 1px 5px;
+            font-size: 11px;
+            cursor: pointer;
+        }
+        .tag-badge:hover {
+            background: #000080;
+            color: white;
+        }
+
+        /* CRT Filter toggle */
+        body.crt-overlay::after {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 9999;
+            background-size: 100% 3px, 6px 100%;
+            pointer-events: none;
+        }
+
+        ::-webkit-scrollbar {
+            width: 16px;
+            height: 16px;
+            background-color: var(--win-gray);
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: var(--win-gray);
+            border-top: 2px solid var(--win-gray-light);
+            border-left: 2px solid var(--win-gray-light);
+            border-right: 2px solid var(--win-gray-darkest);
+            border-bottom: 2px solid var(--win-gray-darkest);
+        }
+    </style>
+</head>
+<body class="theme-classic">
+
+    <!-- MAIN TWO-COLUMN BLOG CONTAINER (NO PROFILE HEADER) -->
+    <div class="max-w-6xl mx-auto p-3 sm:p-5 grid grid-cols-1 md:grid-cols-12 gap-5 items-start">
+        
+        <!-- LEFT COLUMN: STICKY CONTROL & NAVIGATION SIDEBAR (Win98 Window) -->
+        <aside class="md:col-span-4 lg:col-span-3 sticky top-4 z-10 flex flex-col gap-4">
+            
+            <!-- SIDEBAR WINDOW -->
+            <div class="win98-window outset-border w-full">
+                <div class="win98-titlebar">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-folder text-yellow-300 text-xs"></i>
+                        <span class="font-bold tracking-wide">SYSTEM_MENU.EXE</span>
+                    </div>
+                    <div class="flex items-center gap-1">
+                        <button class="btn-98 text-xs !p-0 w-4 h-4 font-bold">_</button>
+                        <button class="btn-98 text-xs !p-0 w-4 h-4 font-bold">×</button>
+                    </div>
+                </div>
+
+                <div class="p-3 flex flex-col gap-3">
+                    <!-- Retro Title / Site Brand -->
+                    <div class="inset-border bg-black p-2 text-center text-green-400 font-mono">
+                        <div class="text-sm font-bold tracking-widest uppercase">ROC-ETTE // VAULT</div>
+                        <div class="text-[10px] text-gray-400">ARCHIVAL MEDIA STREAM</div>
+                    </div>
+
+                    <!-- Filter Search Input -->
+                    <div class="inset-border p-2 bg-[var(--win-gray)] flex flex-col gap-1">
+                        <label for="search-box" class="font-bold text-[11px] text-gray-800 flex items-center gap-1">
+                            <i class="fa-solid fa-magnifying-glass text-blue-800"></i> Search / Tag Filter:
+                        </label>
+                        <input id="search-box" type="text" placeholder="e.g. #scans, gif, video..." class="inset-border bg-white px-2 py-1 text-xs outline-none w-full" oninput="filterStream(this.value)">
+                    </div>
+
+                    <!-- Navigation Links -->
+                    <nav class="flex flex-col gap-1">
+                        <button onclick="filterStream('')" class="btn-98 w-full justify-start text-xs"><i class="fa-solid fa-newspaper text-blue-700"></i> All Posts / Stream</button>
+                        <button onclick="filterStream('scans')" class="btn-98 w-full justify-start text-xs"><i class="fa-solid fa-image text-yellow-700"></i> Magazine Scans</button>
+                        <button onclick="filterStream('gif')" class="btn-98 w-full justify-start text-xs"><i class="fa-solid fa-film text-purple-700"></i> Animated GIFs</button>
+                        <button onclick="filterStream('video')" class="btn-98 w-full justify-start text-xs"><i class="fa-solid fa-clapperboard text-green-700"></i> Archival Video</button>
+                        <button onclick="filterStream('audio')" class="btn-98 w-full justify-start text-xs"><i class="fa-solid fa-music text-red-700"></i> Audio Clips</button>
+                    </nav>
+
+                    <!-- Quick Tag Cloud -->
+                    <div class="flex flex-wrap gap-1 py-1">
+                        <span class="tag-badge" onclick="filterStream('90s')">#90s</span>
+                        <span class="tag-badge" onclick="filterStream('hiphop')">#hiphop</span>
+                        <span class="tag-badge" onclick="filterStream('gaming')">#gaming</span>
+                        <span class="tag-badge" onclick="filterStream('cyber')">#cyber</span>
+                        <span class="tag-badge" onclick="filterStream('retro')">#retro</span>
+                    </div>
+
+                    <!-- Desktop Controls: Theme & Sound -->
+                    <div class="inset-border bg-white p-2 flex flex-col gap-2 text-xs">
+                        <div class="font-bold border-b pb-1 text-gray-700">System Options</div>
+                        <div class="flex items-center justify-between">
+                            <span>Sound FX:</span>
+                            <button id="sfx-toggle" class="btn-98 text-[10px]" onclick="toggleAudio()"><i class="fa-solid fa-volume-high"></i> ON</button>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span>Theme:</span>
+                            <select id="theme-selector" class="inset-border text-[11px] p-0.5 bg-gray-100" onchange="changeTheme(this.value)">
+                                <option value="theme-classic">Teal 98</option>
+                                <option value="theme-silver">Silver 2000</option>
+                                <option value="theme-highcontrast">High Contrast</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- System Status -->
+                    <div class="inset-border bg-gray-100 p-1.5 text-[10px] text-gray-600 font-mono flex items-center justify-between">
+                        <span>MODEM: 56.6k</span>
+                        <span id="post-count" class="font-bold text-black">4 Posts Loaded</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- RIGHT COLUMN: STREAM OF MEDIA POSTS (NO HEADER ABOVE) -->
+        <main id="feed" class="md:col-span-8 lg:col-span-9 flex flex-col gap-6">
+
+            <!-- POST 1: HIGH-RES MAGAZINE / ART IMAGE POST -->
+            <article class="win98-window outset-border w-full post-card" data-tags="scans hiphop 90s retro">
+                <div class="win98-titlebar">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-image text-yellow-300 text-xs"></i>
+                        <span class="font-bold">SCAN_098.BMP - Hip-Hop Culture Magazine Spread (1994)</span>
+                    </div>
+                    <span class="text-[11px] font-mono">11/04/1994</span>
+                </div>
+
+                <div class="p-3 flex flex-col gap-3">
+                    <div class="inset-border bg-black overflow-hidden flex justify-center">
+                        <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=900&auto=format&fit=crop" alt="Hip-Hop Vinyl Archival Spread" class="w-full h-auto max-h-[500px] object-cover cursor-pointer" onclick="viewFull(this.src)">
+                    </div>
+
+                    <p class="text-xs leading-relaxed text-gray-900">
+                        High-resolution dual page archival scan from late 1994 underground music culture catalog. Note the original print color registration and halftone screen patterns.
+                    </p>
+
+                    <div class="flex flex-wrap gap-1">
+                        <span class="tag-badge" onclick="filterStream('scans')">#scans</span>
+                        <span class="tag-badge" onclick="filterStream('hiphop')">#hiphop</span>
+                        <span class="tag-badge" onclick="filterStream('90s')">#90s</span>
+                    </div>
+
+                    <div class="inset-border bg-[var(--win-gray)] p-2 flex items-center justify-between text-xs">
+                        <span class="font-bold text-gray-700"><i class="fa-solid fa-heart text-red-600"></i> 2,840 notes</span>
+                        <div class="flex gap-2">
+                            <button class="btn-98 text-xs" onclick="addNote(this)"><i class="fa-solid fa-retweet text-green-700"></i> Reblog</button>
+                            <button class="btn-98 text-xs" onclick="likePost(this)"><i class="fa-solid fa-thumbs-up text-blue-700"></i> Like</button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- POST 2: ANIMATED GIF POST -->
+            <article class="win98-window outset-border w-full post-card" data-tags="gif cyber retro 90s gaming">
+                <div class="win98-titlebar">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-film text-purple-300 text-xs"></i>
+                        <span class="font-bold">CYBER_GRID.GIF - Early 3D Wireframe Demo</span>
+                    </div>
+                    <span class="text-[11px] font-mono">08/14/1995</span>
+                </div>
+
+                <div class="p-3 flex flex-col gap-3">
+                    <div class="inset-border bg-black overflow-hidden flex justify-center">
+                        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=900&auto=format&fit=crop" alt="Cyber Grid Animation" class="w-full h-72 object-cover">
+                    </div>
+
+                    <p class="text-xs leading-relaxed text-gray-900">
+                        Late-night workstation rendering loops. Continuous vector geometry generated for early multimedia software titles.
+                    </p>
+
+                    <div class="flex flex-wrap gap-1">
+                        <span class="tag-badge" onclick="filterStream('gif')">#gif</span>
+                        <span class="tag-badge" onclick="filterStream('cyber')">#cyber</span>
+                        <span class="tag-badge" onclick="filterStream('gaming')">#gaming</span>
+                    </div>
+
+                    <div class="inset-border bg-[var(--win-gray)] p-2 flex items-center justify-between text-xs">
+                        <span class="font-bold text-gray-700"><i class="fa-solid fa-heart text-red-600"></i> 1,120 notes</span>
+                        <div class="flex gap-2">
+                            <button class="btn-98 text-xs" onclick="addNote(this)"><i class="fa-solid fa-retweet text-green-700"></i> Reblog</button>
+                            <button class="btn-98 text-xs" onclick="likePost(this)"><i class="fa-solid fa-thumbs-up text-blue-700"></i> Like</button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- POST 3: VIDEO ARCHIVE POST -->
+            <article class="win98-window outset-border w-full post-card" data-tags="video retro 90s tech">
+                <div class="win98-titlebar">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-clapperboard text-green-300 text-xs"></i>
+                        <span class="font-bold">EXPO_96.AVI - Archival Commercial Spot</span>
+                    </div>
+                    <span class="text-[11px] font-mono">01/02/1996</span>
+                </div>
+
+                <div class="p-3 flex flex-col gap-3">
+                    <div class="inset-border bg-black p-1">
+                        <video controls class="w-full h-auto max-h-80 bg-black">
+                            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
+                            Your browser does not support HTML5 video.
+                        </video>
+                    </div>
+
+                    <p class="text-xs leading-relaxed text-gray-900">
+                        Digitized VHS promo material recorded directly from tech convention video feeds in early 1996.
+                    </p>
+
+                    <div class="flex flex-wrap gap-1">
+                        <span class="tag-badge" onclick="filterStream('video')">#video</span>
+                        <span class="tag-badge" onclick="filterStream('tech')">#tech</span>
+                        <span class="tag-badge" onclick="filterStream('90s')">#90s</span>
+                    </div>
+
+                    <div class="inset-border bg-[var(--win-gray)] p-2 flex items-center justify-between text-xs">
+                        <span class="font-bold text-gray-700"><i class="fa-solid fa-heart text-red-600"></i> 3,450 notes</span>
+                        <div class="flex gap-2">
+                            <button class="btn-98 text-xs" onclick="addNote(this)"><i class="fa-solid fa-retweet text-green-700"></i> Reblog</button>
+                            <button class="btn-98 text-xs" onclick="likePost(this)"><i class="fa-solid fa-thumbs-up text-blue-700"></i> Like</button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- POST 4: AUDIO / WINAMP PLAYER POST -->
+            <article class="win98-window outset-border w-full post-card" data-tags="audio 90s retro">
+                <div class="win98-titlebar">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-music text-blue-300 text-xs"></i>
+                        <span class="font-bold">MODEM_HANDSHAKE.MP3 - Dialup Audio Archival</span>
+                    </div>
+                    <span class="text-[11px] font-mono">11/12/1998</span>
+                </div>
+
+                <div class="p-3 flex flex-col gap-3">
+                    <div class="inset-border bg-gray-200 p-3 flex flex-col gap-2">
+                        <div class="flex items-center justify-between bg-black text-green-400 font-mono p-2 inset-border text-xs">
+                            <span>TRACK_01: 56K_CONNECT.MP3</span>
+                            <span>[02:45]</span>
+                        </div>
+                        <audio controls class="w-full">
+                            <source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg">
+                        </audio>
+                    </div>
+
+                    <p class="text-xs leading-relaxed text-gray-900">
+                        Raw audio capture of the famous 56k V.90 modem handshake tone sequence prior to entering the web.
+                    </p>
+
+                    <div class="flex flex-wrap gap-1">
+                        <span class="tag-badge" onclick="filterStream('audio')">#audio</span>
+                        <span class="tag-badge" onclick="filterStream('90s')">#90s</span>
+                    </div>
+
+                    <div class="inset-border bg-[var(--win-gray)] p-2 flex items-center justify-between text-xs">
+                        <span class="font-bold text-gray-700"><i class="fa-solid fa-heart text-red-600"></i> 870 notes</span>
+                        <div class="flex gap-2">
+                            <button class="btn-98 text-xs" onclick="addNote(this)"><i class="fa-solid fa-retweet text-green-700"></i> Reblog</button>
+                            <button class="btn-98 text-xs" onclick="likePost(this)"><i class="fa-solid fa-thumbs-up text-blue-700"></i> Like</button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+        </main>
+    </div>
+
+    <!-- WINDOWS 98 TASKBAR -->
+    <div id="taskbar" class="fixed bottom-0 left-0 right-0 h-9 bg-[var(--win-gray)] outset-border z-40 flex items-center justify-between px-1">
+        <div class="flex items-center gap-1">
+            <button class="btn-98 font-bold px-2 py-1 flex items-center gap-1">
+                <i class="fa-brands fa-windows text-blue-800 text-sm"></i>
+                <span>Start</span>
+            </button>
+            <div class="h-6 w-0.5 border-l border-gray-400 border-r border-white mx-1"></div>
+            <div class="btn-98 text-xs h-7 px-2 flex items-center gap-1 pressed">
+                <i class="fa-solid fa-newspaper text-yellow-600"></i>
+                <span>Roc-Ette Stream</span>
+            </div>
+        </div>
+
+        <div class="inset-border px-2 py-0.5 flex items-center gap-2 bg-[var(--win-gray)] text-xs">
+            <i class="fa-solid fa-volume-high text-gray-700"></i>
+            <span id="digital-clock" class="font-mono">12:00 PM</span>
+        </div>
+    </div>
+
+    <!-- INTERACTIVITY & UTILITIES SCRIPT -->
+    <script>
+        let sfxEnabled = true;
+
+        // Web Audio Synthesizer for Retro Beeps
+        function playBeep(freq = 440, type = 'sine', duration = 0.05) {
+            if(!sfxEnabled) return;
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = type;
+                osc.frequency.setValueAtTime(freq, ctx.currentTime);
+                gain.gain.setValueAtTime(0.1, ctx.currentTime);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start();
+                osc.stop(ctx.currentTime + duration);
+            } catch(e){}
+        }
+
+        function toggleAudio() {
+            sfxEnabled = !sfxEnabled;
+            const btn = document.getElementById('sfx-toggle');
+            btn.innerHTML = sfxEnabled ? `<i class="fa-solid fa-volume-high"></i> ON` : `<i class="fa-solid fa-volume-xmark"></i> OFF`;
+            playBeep(600, 'square');
+        }
+
+        function changeTheme(themeClass) {
+            document.body.className = themeClass;
+            playBeep(800, 'sine');
+        }
+
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('digital-clock').innerText = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        }
+
+        function filterStream(query) {
+            playBeep(520, 'square');
+            const searchInput = document.getElementById('search-box');
+            if(query !== searchInput.value) searchInput.value = query;
+
+            const cleanQuery = query.toLowerCase().replace('#', '').trim();
+            const posts = document.querySelectorAll('.post-card');
+            let visibleCount = 0;
+
+            posts.forEach(post => {
+                const tags = post.getAttribute('data-tags').toLowerCase();
+                const text = post.innerText.toLowerCase();
+
+                if (cleanQuery === '' || tags.includes(cleanQuery) || text.includes(cleanQuery)) {
+                    post.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    post.style.display = 'none';
+                }
+            });
+
+            document.getElementById('post-count').innerText = `${visibleCount} Post${visibleCount !== 1 ? 's' : ''} Shown`;
+        }
+
+        function likePost(btn) {
+            playBeep(700, 'triangle');
+            btn.classList.toggle('pressed');
+            if (btn.classList.contains('pressed')) {
+                btn.innerHTML = `<i class="fa-solid fa-thumbs-up text-blue-700"></i> Liked`;
+            } else {
+                btn.innerHTML = `<i class="fa-solid fa-thumbs-up text-blue-700"></i> Like`;
+            }
+        }
+
+        function addNote(btn) {
+            playBeep(900, 'sine');
+            alert("Reblogged to your blog stream!");
+        }
+
+        function viewFull(imgUrl) {
+            playBeep(1000, 'sine', 0.1);
+            window.open(imgUrl, '_blank');
+        }
+
+        window.onload = function() {
+            updateClock();
+            setInterval(updateClock, 1000);
+        };
+    </script>
+</body>
+</html>
